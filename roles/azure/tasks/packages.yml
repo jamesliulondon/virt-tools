@@ -1,0 +1,23 @@
+---
+- name: install azure.repo_key
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: install azure.repo_url
+  template:
+    src: azure-cli.repo.j2
+    dest: /etc/yum.repos.d/azure-cli.repo
+  become: yes
+  
+
+- name: awscli package [redhat]
+  package: 
+    name: "{{item}}"
+  become: yes
+  when: ansible_os_family == "RedHat"
+  with_items:
+    - openssl
+    - libffi
+    - python3
+    - azure-cli
+

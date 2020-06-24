@@ -1,0 +1,14 @@
+[default]
+region = eu-west-2
+output = json
+[profile accord]
+region = eu-west-2
+output = json
+[profile hotmail]
+region = eu-west-2
+output = json
+{% for profile_name in aws_profiles %}
+[profile {{profile_name}}]
+region = eu-west-2
+output = json
+{% endfor %}
