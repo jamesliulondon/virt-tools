@@ -1,0 +1,2 @@
+linux_gcloud_sdk_url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-298.0.0-linux-x86_64.tar.gz
+shared_directory: "{{ ansible_user_dir }}/shared"

@@ -1,0 +1,20 @@
+---
+- name: ensure destination dir exists
+  file:
+    path: "{{shared_directory}}"
+    state: directory
+    mode: 0755
+- name: download SDK
+  get_url:
+    url: "{{linux_gcloud_sdk_url}}"
+    dest: "{{shared_directory}}/{{linux_gcloud_sdk_url  | basename }}"
+
+- name: unzip SDK
+  unarchive:
+    src: "/{{shared_directory}}/{{linux_gcloud_sdk_url  | basename }}"
+    dest: /{{shared_directory}}/
+
+- name: launch unattended install
+  shell: ./install.sh --usage-reporting false --bash-completion true -q
+  args:
+    chdir: /{{shared_directory}}/google-cloud-sdk
