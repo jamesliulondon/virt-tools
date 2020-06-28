@@ -1,3 +1,3 @@
 ---
-- include: redhat-packages.yml
+- include: redhat-redhat-packages.yml
   when: ansible_os_family == "RedHat"

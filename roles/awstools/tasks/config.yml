@@ -27,10 +27,12 @@
   file:
     path: "{{ssh_template_dir}}/{{item}}.pub"
     mode: 0600
+    state: touch
   with_items: "{{aws_profiles}}"
 
 - name: ssh priv files
   file:
     path: "{{ssh_template_dir}}/{{item}}"
     mode: 0600
+    state: touch
   with_items: "{{aws_profiles}}"

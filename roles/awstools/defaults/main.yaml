@@ -1,3 +1,7 @@
+aws_package:
+  osx_url: "https://awscli.amazonaws.com/AWSCLIV2.pkg"
+
+
 aws_template_dir: "{{ ansible_user_dir }}/.aws"
 ssh_template_dir: "{{ ansible_user_dir }}/.ssh"
 
