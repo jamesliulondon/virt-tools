@@ -1,2 +1,6 @@
 ---
-- include: redhat-packages.yml
+- include: redhat-redhat_packages.yml
+  when: ansible_os_family == "RedHat"
+
+- include: osx_packages.yml
+  when: ansible_os_family|lower == "darwin"

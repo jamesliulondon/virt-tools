@@ -1,0 +1,4 @@
+---
+- name: brew install azure cli
+  homebrew:
+    name: azure-cli
