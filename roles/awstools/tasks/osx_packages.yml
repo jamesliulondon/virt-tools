@@ -1,0 +1,24 @@
+---
+
+- name: download aws package
+  get_url:
+    url: "{{aws_package.osx_url}}"
+    dest: "/tmp/{{aws_package.osx_url | basename}}"
+
+- name: execute aws cli install
+  shell: sudo installer -pkg "/tmp/{{aws_package.osx_url | basename}}" -target /
+  args:
+    chdir: /tmp/
+  become: yes
+
+- name: create aws configdir [osx]
+  file:
+    path: "{{ aws_template_dir }}"
+    state: directory
+    mode: 0775
+
+- name: create ssh configdir [osx]
+  file:
+    path: "{{ ssh_template_dir }}"
+    state: directory
+    mode: 0700
