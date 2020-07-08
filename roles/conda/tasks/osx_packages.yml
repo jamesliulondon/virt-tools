@@ -1,0 +1,17 @@
+---
+- name: ensure destination dir exists
+  file:
+    path: "{{shared_directory}}"
+    state: directory
+    mode: 0755
+
+- name: download SDK
+  get_url:
+    url: "{{conda_url.osx.3}}"
+    dest: "{{shared_directory}}/{{conda_url.osx.3  | basename }}"
+    mode: 0755
+
+- name: launch unattended install
+  shell: "./{{conda_url.osx.3 | basename}} -b -u"
+  args:
+    chdir: /{{shared_directory}}

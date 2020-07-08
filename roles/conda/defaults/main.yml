@@ -1,0 +1,6 @@
+conda_url:
+  linux:
+    3: https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+  osx:
+    3: https://repo.anaconda.com/archive/Anaconda3-2020.02-MacOSX-x86_64.pkg
+shared_directory: "{{ ansible_user_dir }}/shared"

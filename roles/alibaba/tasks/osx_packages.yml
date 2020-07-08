@@ -1,0 +1,32 @@
+---
+- name: check python 3 prerequisite
+  shell: python --version
+  register: python_version
+
+- name: ensure shared directory
+  file:
+    path: "{{shared_directory}}"
+    state: directory
+    mode: 0755
+  when:  "{{python_version.stdout.split(' ')[1].split('.')[0]}} >= 3"
+
+- name: delete current gcloud directory
+  file:
+    path: "{{shared_directory}}/google-cloud-sdk"
+    state: absent
+
+
+- name: download gcloud
+  get_url:
+    url: "{{linux_gcloud_sdk_url}}"
+    dest: "{{shared_directory}}/google-cloud-sdk.tar.gz"
+
+- name: untar gcloud package
+  shell: "tar zxvf {{shared_directory}}/google-cloud-sdk.tar.gz"
+  args:
+    chdir: "{{shared_directory}}"
+
+- name: execute install
+  shell: ./google-cloud-sdk/install.sh --command-completion true --path-update true -q
+  args:
+    chdir: "{{shared_directory}}"
